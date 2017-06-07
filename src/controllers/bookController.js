@@ -1,7 +1,7 @@
 var mongodb = require('mongodb').MongoClient;
 var objectId = require('mongodb').ObjectID;
 
-var bookController = function (bookService, nav) {
+var bookController = function (flickrService, nav) {
     var middleware = function (req, res, next) {
         //if (!req.user) {
         //res.redirect('/');
@@ -13,7 +13,7 @@ var bookController = function (bookService, nav) {
             'mongodb://localhost:27017/local';
 
         mongodb.connect(url, function (err, db) {
-            var collection = db.collection('books');
+            var collection = db.collection('pets');
 
             collection.find({}).toArray(
                 function (err, results) {
@@ -28,21 +28,21 @@ var bookController = function (bookService, nav) {
 
     };
 
-    var getById = function (req, res) {
-        var id = new objectId(req.params.id);
+    var getPhotosByTag = function (req, res) {
+        var id = new objectId(req.params.tag);
         var url =
-            'mongodb://localhost:27017/libraryApp';
+            'mongodb://localhost:27017/local';
 
         mongodb.connect(url, function (err, db) {
-            var collection = db.collection('books');
+            var collection = db.collection('pets');
 
             collection.findOne({
                     _id: id
                 },
                 function (err, results) {
-                    if (results.bookId) {
-                        bookService
-                            .getBookById(results.bookId,
+                    if (results.flickr.tag) {
+                        flickrService
+                            .getPhotosByTag(results.flickr.tag,
                                 function (err, book) {
                                     results.book = book;
                                     res.render('bookView', {
