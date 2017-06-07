@@ -5,8 +5,7 @@ var app = express();
 var port = process.env.PORT || 5000;
 
 var cats = ['Aremid', 'Zellouisa', 'Mr. Featherbottom', 'Buster', 'Lucille', 'Desmond'];
-var dogs = ['Herman', 'Moksha'];
-var pets = {"cats" : cats, "dogs" : dogs};
+var dogs = ['Herman', 'Moksha']; : dogs};
 
 app.use(express.static('public'));
 app.set('views', './src/views');
