@@ -2,26 +2,24 @@ var mongodb = require('mongodb').MongoClient;
 var objectId = require('mongodb').ObjectID;
 var flickrService = require('../services/flickrService.js');
 
-var bookController = function (flickrService, nav) {
+var petController = function (flickrService, nav) {
     var middleware = function (req, res, next) {
-        //if (!req.user) {
-        //res.redirect('/');
-        //}
+//        if (!req.user) {
+//        res.redirect('/');
+//        }
         next();
     };
     var getIndex = function (req, res) {
         var url =
             'mongodb://localhost:27017/local';
-
         mongodb.connect(url, function (err, db) {
             var collection = db.collection('pets');
-
             collection.find({}).toArray(
                 function (err, results) {
-                    res.render('bookListView', {
-                        title: 'Books',
+                    res.render('petListView', {
+                        title: 'My Pets',
                         nav: nav,
-                        books: results
+                        pets: results
                     });
                 }
             );
@@ -35,28 +33,28 @@ var bookController = function (flickrService, nav) {
             'mongodb://localhost:27017/local';
 
         mongodb.connect(url, function (err, db) {
-            var collection = db.collection('books');
+            var collection = db.collection('pets');
 
             collection.findOne({
                     _id: id
                 },
                 function (err, results) {
-                    if (results.bookId) {
-                        bookService
-                            .getBookById(results.bookId,
-                                function (err, book) {
-                                    results.book = book;
-                                    res.render('bookView', {
-                                        title: 'Books',
+                    if (results.petId) {
+                        petService
+                            .getpetById(results.petId,
+                                function (err, pet) {
+                                    results.pet = pet;
+                                    res.render('petView', {
+                                        title: 'Pet',
                                         nav: nav,
-                                        book: results
+                                        pet: results
                                     });
                                 });
                     } else {
-                        res.render('bookView', {
-                            title: 'Books',
+                        res.render('petView', {
+                            title: 'Pets',
                             nav: nav,
-                            book: results
+                            pet: results
                         });
                     }
                 }
@@ -82,35 +80,34 @@ var bookController = function (flickrService, nav) {
                 },
                 function (err, results) {
                     flickrService.getPhotosByTag(results,
-                                                 function(err, book) {
-                                                    res.render('bookView', {
-                                                    title: 'Books',
-                                                    nav: nav,
-                                                    book: results
-                                    });
-                                                 }
-                                                 )
-            }
+                         function(err, pet) {
+                            res.render('petView', {
+                            title: 'pets',
+                            nav: nav,
+                            pet: results
+                        });
+                    });
+                }
 //                    console.log('results ' + results);
 //                    if (results.flickr.tag) {
 //                        flickrService
 //                            .getPhotosByTag(results.flickr.tag,
-//                                function (err, book) {
-//                                    results.book = book;
-//                                    res.render('bookView', {
-//                                        title: 'Books',
+//                                function (err, pet) {
+//                                    results.pet = pet;
+//                                    res.render('petView', {
+//                                        title: 'pets',
 //                                        nav: nav,
-//                                        book: results
+//                                        pet: results
 //                                    });
 //                                });
 //                    } 
 //                
 //                
 //                else {
-//                        res.render('bookView', {
-//                            title: 'Books',
+//                        res.render('petView', {
+//                            title: 'pets',
 //                            nav: nav,
-//                            book: results
+//                            pet: results
 //                        });
 //                    }
 //                }
@@ -123,10 +120,10 @@ var bookController = function (flickrService, nav) {
 
     return {
         getIndex: getIndex,
-//        getById: getById,
+        getById: getById,
         getPhotosByTag: getPhotosByTag,
         middleware: middleware
     };
 };
 
-module.exports = bookController;
+module.exports = petController;

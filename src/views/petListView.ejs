@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>Storystrap Template</title>
+		<title>My Pets</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <!--bower:css-->
@@ -60,7 +60,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        <h1>Pets
+        <h1>Storystrap
           <p class="lead"></p>
         </h1>
       </div>
@@ -99,16 +99,20 @@
           
           
           <!--/stories-->
+        <% for(var i=0; i<pets.length;i++){%>
           <div class="row">    
             <br>
             <div class="col-md-2 col-sm-3 text-center">
-
+              <a class="story-title" href="<%=pets[i].flickr.shortlink%>"><img alt="" src="<%=pets[i].flickr.thumbnail%>" style="width:150px;height:150px" class="img-circle"></a>
             </div>
             <div class="col-md-10 col-sm-9">
+              <h3><%=pets[i].name%></h3>
               <div class="row">
                 <div class="col-xs-9">
-                  <h4><span class="label label-default"><%=book%></span></h4><h4>
-                  
+                  <h4><span class="label label-default"><%=pets[i].type%></span></h4><h4>
+                  <small style="font-family:courier,'new courier';" class="text-muted"><a href="https://www.flickr.com/photos/tags/<%=pets[i].flickr.tag%>" class="text-muted">Flickr</a></small>
+                    <small style="font-family:courier,'new courier';" class="text-muted"><a href="/pets/tag/<%=pets[i].flickr.tag%>" class="text-muted">Tagged</a></small>
+                     <small style="font-family:courier,'new courier';" class="text-muted"><a href="/pets/<%=pets[i]._id%>" class="text-muted">Read More</a></small>
                   </h4></div>
                 <div class="col-xs-3"></div>
               </div>
@@ -116,6 +120,7 @@
             </div>
           </div>
           <hr>
+          <%}%>
          
  
           <!--/stories-->

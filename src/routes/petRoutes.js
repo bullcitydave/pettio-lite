@@ -1,24 +1,24 @@
 //**8***//var express = require('express');
-//var bookRouter = express.Router();
+//var petRouter = express.Router();
 //var mongodb = require('mongodb').MongoClient;
 //var objectId = require('mongodb').ObjectID;
 //
 
 
 var express = require('express');
-var bookRouter = express.Router();
+var petRouter = express.Router();
 var mongodb = require('mongodb').MongoClient;
 var objectId = require('mongodb').ObjectID;
 
 //var router = function (nav) {
 //
-//    bookRouter.use(function (req, res, next) {
+//    petRouter.use(function (req, res, next) {
 //        if (!req.user) {
 //            res.redirect('/');
 //        }
 //        next();
 //    });
-//    bookRouter.route('/')
+//    petRouter.route('/')
 //        .get(function (req, res) {
 //            var url =
 //                'mongodb://localhost:27017/local';
@@ -28,10 +28,10 @@ var objectId = require('mongodb').ObjectID;
 //
 //                collection.find({}).toArray(
 //                    function (err, results) {
-//                        res.render('bookListView', {
+//                        res.render('petListView', {
 //                            title: 'Pets',
 //                            nav: nav,
-//                            books: results
+//                            pets: results
 //                        });
 //                    }
 //                );
@@ -39,7 +39,7 @@ var objectId = require('mongodb').ObjectID;
 //
 //        });
 //
-//    bookRouter.route('/:id')
+//    petRouter.route('/:id')
 //        .get(function (req, res) {
 //            var id = new objectId(req.params.id);
 //            var url =
@@ -52,10 +52,10 @@ var objectId = require('mongodb').ObjectID;
 //                        _id: id
 //                    },
 //                    function (err, results) {
-//                        res.render('bookView', {
+//                        res.render('petView', {
 //                            title: 'Pets',
 //                            nav: nav,
-//                            book: results
+//                            pet: results
 //                        });
 //
 //                    }
@@ -65,21 +65,19 @@ var objectId = require('mongodb').ObjectID;
 //
 //        });
 //
-//    return bookRouter;
+//    return petRouter;
 //};
 
 var router = function (nav) {
-    var flickrService =
+    var petService =
         require('../services/flickrService')();    
-    var goodreadsService =
-        require('../services/goodreadsService')();
-    var bookController =
-        require('../controllers/bookController')(goodreadsService, nav);
-    bookRouter.use(bookController.middleware);
-    bookRouter.route('/')
-        .get(bookController.getIndex);
+    var petController =
+        require('../controllers/petController')(petService, nav);
+    petRouter.use(petController.middleware);
+    petRouter.route('/')
+        .get(petController.getIndex);
 
-    bookRouter.route('/:id')
+    petRouter.route('/:id')
         .get(function (req, res) {
             var id = new objectId(req.params.id);
             var url =
@@ -92,10 +90,10 @@ var router = function (nav) {
                         _id: id
                     },
                     function (err, results) {
-                        res.render('bookView', {
+                        res.render('petView', {
                             title: 'Pets',
                             nav: nav,
-                            book: results
+                            pet: results
                         });
 
                     }
@@ -105,9 +103,9 @@ var router = function (nav) {
 
         });
     
-//    bookRouter.route('/:tag')
-//        .get(bookController.getPhotosByTag);
+    petRouter.route('/tag/:tag')
+        .get(petController.getPhotosByTag);
 
-    return bookRouter;
+    return petRouter;
 };
 module.exports = router;
