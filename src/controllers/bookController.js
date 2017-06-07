@@ -27,22 +27,22 @@ var bookController = function (flickrService, nav) {
         });
 
     };
-
-    var getPhotosByTag = function (req, res) {
-        var id = new objectId(req.params.tag);
+    
+    var getById = function (req, res) {
+        var id = new objectId(req.params.id);
         var url =
             'mongodb://localhost:27017/local';
 
         mongodb.connect(url, function (err, db) {
-            var collection = db.collection('pets');
+            var collection = db.collection('books');
 
             collection.findOne({
                     _id: id
                 },
                 function (err, results) {
-                    if (results.flickr.tag) {
-                        flickrService
-                            .getPhotosByTag(results.flickr.tag,
+                    if (results.bookId) {
+                        bookService
+                            .getBookById(results.bookId,
                                 function (err, book) {
                                     results.book = book;
                                     res.render('bookView', {
@@ -66,9 +66,53 @@ var bookController = function (flickrService, nav) {
 
     };
 
+
+//    var getPhotosByTag = function (req, res) {
+//        var id = new objectId(req.params.id);
+//        var url =
+//            'mongodb://localhost:27017/local';
+//
+//        mongodb.connect(url, function (err, db) {
+//            var collection = db.collection('pets');
+//
+//            collection.findOne({
+//                    _id: id
+//                },
+//                function (err, results) {
+//                    console.log('results ' + results);
+//                    if (results.flickr.tag) {
+//                        flickrService
+//                            .getPhotosByTag(results.flickr.tag,
+//                                function (err, book) {
+//                                    results.book = book;
+//                                    res.render('bookView', {
+//                                        title: 'Books',
+//                                        nav: nav,
+//                                        book: results
+//                                    });
+//                                });
+//                    } 
+//                
+                
+//                else {
+//                        res.render('bookView', {
+//                            title: 'Books',
+//                            nav: nav,
+//                            book: results
+//                        });
+//                    }
+//                }
+//
+//            );
+//
+//        });
+//
+//    };
+
     return {
         getIndex: getIndex,
         getById: getById,
+//        getPhotosByTag: getPhotosByTag,
         middleware: middleware
     };
 };
