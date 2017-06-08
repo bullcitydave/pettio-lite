@@ -8,13 +8,11 @@ var session = require('express-session');
 
 var port = process.env.PORT || 5000;
 var nav = [{
-    Link: '/Books',
-    Text: 'Book'
-    }, {
-    Link: '/Authors',
-    Text: 'Author'
-    }];
-var bookRouter = require('./src/routes/bookRoutes')(nav);
+    Link: '/Pets',
+    Text: 'Pets'
+    }
+          ];
+var petRouter = require('./src/routes/petRoutes')(nav);
 var adminRouter = require('./src/routes/adminRoutes')(nav);
 var authRouter = require('./src/routes/authRoutes')(nav);
 
@@ -30,7 +28,7 @@ app.set('views', './src/views');
 app.set('view engine', 'ejs');
 
 
-app.use('/Books', bookRouter);
+app.use('/Pets', petRouter);
 app.use('/Admin', adminRouter);
 app.use('/Auth', authRouter);
 
@@ -38,17 +36,19 @@ app.get('/', function (req, res) {
     res.render('index', {
         title: 'Hello from render',
         nav: [{
-            Link: '/Books',
-            Text: 'Book'
-        }, {
-            Link: '/Authors',
-            Text: 'Author'
-        }]
+            Link: '/Pets',
+            Text: 'Pets'
+        }
+//              , {
+//            Link: '/Authors',
+//            Text: 'Author'
+//        }
+             ]
     });
 });
 
-app.get('/books', function (req, res) {
-    res.send('Hello Books');
+app.get('/pets', function (req, res) {
+    res.send('Hello Pets');
 });
 
 app.listen(port, function (err) {

@@ -10,10 +10,8 @@ gulp.task('style', function () {
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish', {
             verbose: true
-        }))
-//        .pipe(jscs());
-});
-
+        }));
+    
 gulp.task('inject', function () {
     var wiredep = require('wiredep').stream;
     var inject = require('gulp-inject');
