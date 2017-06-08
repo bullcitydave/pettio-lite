@@ -80,8 +80,9 @@ var router = function (nav) {
     petRouter.route('/:id')
         .get(function (req, res) {
             var id = new objectId(req.params.id);
-            var url =
-                'mongodb://localhost:27017/local';
+//            var url =
+//                'mongodb://localhost:27017/local';
+        var url = 'mongodb://pettio-lite:pettio-lite@ds115752.mlab.com:15752/heroku_8kbdmjms';
 
             mongodb.connect(url, function (err, db) {
                 var collection = db.collection('pets');
