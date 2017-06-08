@@ -7,8 +7,10 @@ var router = function () {
     authRouter.route('/signUp')
         .post(function (req, res) {
             console.log(req.body);
-            var url =
-                'mongodb://localhost:27017/local';
+//            var url =
+//                'mongodb://localhost:27017/local';
+            var url = 'mongodb://pettio-lite:pettio-lite@ds115752.mlab.com:15752/heroku_8kbdmjms';
+
             mongodb.connect(url, function (err, db) {
                 var collection = db.collection('users');
                 var user = {
