@@ -60,7 +60,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-7">
-        <h1>Storystrap
+        <h1>Dave's Pets
           <p class="lead"></p>
         </h1>
       </div>
@@ -106,7 +106,14 @@
               <a class="story-title" href="<%=pets[i].flickr.shortlink%>"><img alt="" src="<%=pets[i].flickr.thumbnail%>" style="width:150px;height:150px" class="img-circle"></a>
             </div>
             <div class="col-md-10 col-sm-9">
-              <h3><%=pets[i].name%></h3>
+              <h2><%=pets[i].name%></h2>
+                <h4><%= moment(pets[i].birthday).format('MMMM Do, YYYY');%>
+                    <%if (pets[i].died) { %>
+                        <%= ' - ' + moment(pets[i].died).format('MMMM Do, YYYY');%>
+                    <% } %>
+                </h4>
+                <h4>(<%= moment.years(pets[i].died, pets[i].birthday);%> Years Old)</h4>
+ 
               <div class="row">
                 <div class="col-xs-9">
                   <h4><span class="label label-default"><%=pets[i].type%></span></h4><h4>

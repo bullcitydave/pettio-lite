@@ -11,6 +11,7 @@ gulp.task('style', function () {
         .pipe(jshint.reporter('jshint-stylish', {
             verbose: true
         }));
+});
     
 gulp.task('inject', function () {
     var wiredep = require('wiredep').stream;

@@ -16,6 +16,10 @@ var petRouter = require('./src/routes/petRoutes')(nav);
 var adminRouter = require('./src/routes/adminRoutes')(nav);
 var authRouter = require('./src/routes/authRoutes')(nav);
 
+var env = process.env.NODE_ENV || 'development';
+var config = require('./src/config/config')[env];
+var db = config.database;
+
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
