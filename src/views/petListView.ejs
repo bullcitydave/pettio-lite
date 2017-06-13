@@ -3,7 +3,7 @@
 	<head>
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
 		<meta charset="utf-8">
-		<title>My Pets</title>
+		<title>Bull City Dave's Pets</title>
 		<meta name="generator" content="Bootply" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
         <!--bower:css-->
@@ -42,6 +42,7 @@
                 <li><a href="<%=nav[i].Link%>"><%=nav[i].Text%></a></li>
             <%}%>
       </ul>
+<!--
       <ul class="nav navbar-right navbar-nav">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-search"></i></a>
@@ -52,6 +53,7 @@
           </ul>
         </li>
       </ul>
+-->
     </nav>
   </div>
 </header>
@@ -64,6 +66,7 @@
           <p class="lead"></p>
         </h1>
       </div>
+<!--
       <div class="col-md-5">
         <div class="well well-lg"> 
           <div class="row">
@@ -74,16 +77,19 @@
           </div>
         </div>
       </div>
+-->
     </div> 
   </div><!-- /cont -->
   
+<!--
   <div class="container">
     <div class="row">
       <div class="col-md-12">
         <div class="top-spacer"> </div>
       </div>
     </div> 
-  </div><!-- /cont -->
+  </div> /cont 
+-->
   
 </div>
 
@@ -106,26 +112,47 @@
               <a class="story-title" href="<%=pets[i].flickr.shortlink%>"><img alt="" src="<%=pets[i].flickr.thumbnail%>" style="width:150px;height:150px" class="img-circle"></a>
             </div>
             <div class="col-md-10 col-sm-9">
-              <h2><%=pets[i].name%></h2>
-                <h4><%= moment(pets[i].birthday).format('MMMM Do, YYYY');%>
-                    <%if (pets[i].died) { %>
-                        <%= ' - ' + moment(pets[i].died).format('MMMM Do, YYYY');%>
-                    <% } %>
-                </h4>
-                <h4>(<%= moment.years(pets[i].died, pets[i].birthday);%> Years Old)</h4>
- 
-              <div class="row">
-                <div class="col-xs-9">
-                  <h4><span class="label label-default"><%=pets[i].type%></span></h4><h4>
-                  <small style="font-family:courier,'new courier';" class="text-muted"><a href="https://www.flickr.com/photos/tags/<%=pets[i].flickr.tag%>" class="text-muted">Flickr</a></small>
-                    <small style="font-family:courier,'new courier';" class="text-muted"><a href="/pets/tag/<%=pets[i].flickr.tag%>" class="text-muted">Tagged</a></small>
-                     <small style="font-family:courier,'new courier';" class="text-muted"><a href="/pets/<%=pets[i]._id%>" class="text-muted">Read More</a></small>
-                  </h4></div>
-                <div class="col-xs-3"></div>
-              </div>
-              <br><br>
-            </div>
+                <h2><%=pets[i].name%></h2>
+                 <div class="row">
+                    <div class="col-xs-9">
+    <!--                  <h4><span class="label label-default"><%=pets[i].type%></span></h4>-->
+                        <h4>
+                      <small style="font-family:courier,'new courier';" class="text-muted"><a target="_blank" href="<%=pets[i].flickr.main_set%>" class="text-muted"><i class="fa fa-2x fa-flickr" aria-hidden="true"></i>Complete Flickr Set</a></small>
+    <!--
+                        <small style="font-family:courier,'new courier';" class="text-muted"><a href="/pets/tag/<%=pets[i].flickr.collection%>" class="text-muted">Tagged</a></small>
+                         <small style="font-family:courier,'new courier';" class="text-muted"><a href="/pets/<%=pets[i]._id%>" class="text-muted">Read More</a></small>
+                      </h4>
+    -->
+                            </div>
+                    <div class="col-xs-3"></div>
+                  </div>
+                                      <div class="row">
+
+                <div class="panel panel-default col-md-6">
+                    <div class="panel-heading"><h4>LIFE</h4></div>
+                    <div class="panel-body">
+                        <h4><%= moment(pets[i].birthday).format('MMMM Do, YYYY');%>
+                            <%if (pets[i].died) { %>
+                                <%= ' - ' + moment(pets[i].died).format('MMMM Do, YYYY');%>
+                            <% } %>
+                        </h4>
+                        <h4>(<%= moment.years(pets[i].died, pets[i].birthday);%> Years Old)</h4>
+                    </div>
+                </div>
+                <div class="panel panel-default col-md-6">
+                    <div class="panel-heading"><h4>TIME WITH ME</h4></div>
+                    <div class="panel-body">
+                        <h4><%= moment(pets[i].adopted).format('MMMM Do, YYYY');%>
+                            <%if (pets[i].died) { %>
+                                <%= ' - ' + moment(pets[i].died).format('MMMM Do, YYYY');%>
+                            <% } %>
+                        </h4>
+                        <h4>(<%= moment.years(pets[i].died, pets[i].adopted);%> Years)</h4>
+                    </div>
+                </div>
+                     </div>
           </div>
+              </div>
           <hr>
           <%}%>
          
@@ -133,7 +160,7 @@
           <!--/stories-->
           
           
-          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>
+<!--          <a href="/" class="btn btn-primary pull-right btnNext">More <i class="glyphicon glyphicon-chevron-right"></i></a>-->
         
           
         </div>
@@ -148,6 +175,7 @@
                                                                                 
 <hr>
 
+<!--
 <div class="container" id="footer">
   <div class="row">
     <div class="col col-sm-12">
@@ -162,6 +190,7 @@
     </div>
   </div>
 </div>
+-->
 
 <hr>
 
@@ -172,10 +201,12 @@
     <div class="row">
       <div class="col-sm-6">
         <ul class="list-inline">
+<!--
           <li><i class="icon-facebook icon-2x"></i></li>
           <li><i class="icon-twitter icon-2x"></i></li>
           <li><i class="icon-google-plus icon-2x"></i></li>
           <li><i class="icon-pinterest icon-2x"></i></li>
+-->
         </ul>
         
       </div>

@@ -35,21 +35,21 @@ app.set('view engine', 'ejs');
 app.use('/Pets', petRouter);
 app.use('/Admin', adminRouter);
 app.use('/Auth', authRouter);
-
-app.get('/', function (req, res) {
-    res.render('index', {
-        title: 'Hello from render',
-        nav: [{
-            Link: '/Pets',
-            Text: 'Pets'
-        }
-//              , {
-//            Link: '/Authors',
-//            Text: 'Author'
+app.use('/', petRouter);
+//app.get('/', function (req, res) {
+//    res.render('petListView', {
+//        title: 'Hello from render',
+//        nav: [{
+//            Link: '/Pets',
+//            Text: 'Pets'
 //        }
-             ]
-    });
-});
+////              , {
+////            Link: '/Authors',
+////            Text: 'Author'
+////        }
+//             ]
+//    });
+//});
 
 app.get('/pets', function (req, res) {
     res.send('Hello Pets');
