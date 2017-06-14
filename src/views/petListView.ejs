@@ -24,7 +24,7 @@
 			<script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
 	</head>
-	<body>
+	<body class="mypets">
 <header class="navbar navbar-bright navbar-fixed-top" role="banner">
   <div class="container">
     <div class="navbar-header">
@@ -117,7 +117,8 @@
                     <div class="col-xs-9">
     <!--                  <h4><span class="label label-default"><%=pets[i].type%></span></h4>-->
                         <h4>
-                      <small style="font-family:courier,'new courier';" class="text-muted"><a target="_blank" href="<%=pets[i].flickr.main_set%>" class="text-muted"><i class="fa fa-2x fa-flickr" aria-hidden="true"></i>Complete Flickr Set</a></small>
+                      <small style="font-family:courier,'new courier';" class="text-muted"><a target="_blank" href="<%=pets[i].flickr.main_set%>" class="text-muted"><i class="fa fa-2x fa-flickr" aria-hidden="true"></i>
+                          <span>Complete Flickr Set</span></a></small>
     <!--
                         <small style="font-family:courier,'new courier';" class="text-muted"><a href="/pets/tag/<%=pets[i].flickr.collection%>" class="text-muted">Tagged</a></small>
                          <small style="font-family:courier,'new courier';" class="text-muted"><a href="/pets/<%=pets[i]._id%>" class="text-muted">Read More</a></small>
@@ -129,25 +130,25 @@
                                       <div class="row">
 
                 <div class="panel panel-default col-md-6">
-                    <div class="panel-heading"><h4>LIFE</h4></div>
+                    <div class="panel-heading"><h5>LIFE</h5></div>
                     <div class="panel-body">
-                        <h4><%= moment(pets[i].birthday).format('MMMM Do, YYYY');%>
+                        <h5><%= moment(pets[i].birthday).format('MMMM Do, YYYY');%>
                             <%if (pets[i].died) { %>
                                 <%= ' - ' + moment(pets[i].died).format('MMMM Do, YYYY');%>
                             <% } %>
-                        </h4>
-                        <h4>(<%= moment.years(pets[i].died, pets[i].birthday);%> Years Old)</h4>
+                        </h5>
+                        <h4><%= moment.years(pets[i].died, pets[i].birthday);%> Years Old</h4>
                     </div>
                 </div>
                 <div class="panel panel-default col-md-6">
-                    <div class="panel-heading"><h4>TIME WITH ME</h4></div>
+                    <div class="panel-heading"><h5>TIME WITH ME</h5></div>
                     <div class="panel-body">
-                        <h4><%= moment(pets[i].adopted).format('MMMM Do, YYYY');%>
+                        <h5><%= moment(pets[i].adopted).format('MMMM Do, YYYY');%>
                             <%if (pets[i].died) { %>
                                 <%= ' - ' + moment(pets[i].died).format('MMMM Do, YYYY');%>
                             <% } %>
-                        </h4>
-                        <h4>(<%= moment.years(pets[i].died, pets[i].adopted);%> Years)</h4>
+                        </h5>
+                        <h4><%= moment.years(pets[i].died, pets[i].adopted);%> Years</h4>
                     </div>
                 </div>
                      </div>

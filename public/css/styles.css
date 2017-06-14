@@ -168,7 +168,18 @@ a,a:hover {
 
 
 /*MY OVERRRIDES*/
-
+.mypets
 h2 {
     font-size: 4.0em;
+}
+
+.mypets
+h5 {
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+
+.mypets
+.fa-2x {
+    vertical-align: middle;
 }
