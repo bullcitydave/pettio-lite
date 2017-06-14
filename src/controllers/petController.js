@@ -27,8 +27,13 @@ var petController = function (flickrService, nav) {
 
         var db = req.config[env].database;
         console.log('db: ' + db);
-//         var url = 'mongodb://' + db.user + ':' + db.pw + '@' + db.host + ':' + db.port + '/' + db.db + '?authSource='  + db.authSource;
-         var url = 'mongodb://' + db.host + ':' + db.port + '/' + db.db;
+        var url;
+        if (env !== 'development') { url = 'mongodb://' + db.user + ':' + db.pw + '@' + db.host + ':' + db.port + '/' + db.db + '?authSource='  + db.authSource;
+                                  }
+                                
+        else {
+         url = 'mongodb://' + db.host + ':' + db.port + '/' + db.db;
+        }
         console.log('url : ' + url);
         mongodb.connect(url, function (err, db) {
             console.log('error ' + err);
