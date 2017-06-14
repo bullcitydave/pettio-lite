@@ -16,6 +16,10 @@ var petRouter = require('./src/routes/petRoutes')(nav);
 var adminRouter = require('./src/routes/adminRoutes')(nav);
 var authRouter = require('./src/routes/authRoutes')(nav);
 
+var env = process.env.NODE_ENV || 'development';
+var config = require('./src/config/config')[env];
+var db = config.database;
+
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded());
@@ -31,21 +35,21 @@ app.set('view engine', 'ejs');
 app.use('/Pets', petRouter);
 app.use('/Admin', adminRouter);
 app.use('/Auth', authRouter);
-
-app.get('/', function (req, res) {
-    res.render('index', {
-        title: 'Hello from render',
-        nav: [{
-            Link: '/Pets',
-            Text: 'Pets'
-        }
-//              , {
-//            Link: '/Authors',
-//            Text: 'Author'
+app.use('/', petRouter);
+//app.get('/', function (req, res) {
+//    res.render('petListView', {
+//        title: 'Hello from render',
+//        nav: [{
+//            Link: '/Pets',
+//            Text: 'Pets'
 //        }
-             ]
-    });
-});
+////              , {
+////            Link: '/Authors',
+////            Text: 'Author'
+////        }
+//             ]
+//    });
+//});
 
 app.get('/pets', function (req, res) {
     res.send('Hello Pets');
