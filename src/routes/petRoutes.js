@@ -77,32 +77,32 @@ var router = function (nav) {
     petRouter.route('/')
         .get(petController.getIndex);
 
-    petRouter.route('/:id')
-        .get(function (req, res) {
-            var id = new objectId(req.params.id);
+//    petRouter.route('/:id')
+//        .get(function (req, res) {
+//            var id = new objectId(req.params.id);
 //            var url =
 //                'mongodb://localhost:27017/local';
-        var url = 'mongodb://pettio-lite:pettio-lite@ds115752.mlab.com:15752/heroku_8kbdmjms';
-
-            mongodb.connect(url, function (err, db) {
-                var collection = db.collection('pets');
-
-                collection.findOne({
-                        _id: id
-                    },
-                    function (err, results) {
-                        res.render('petView', {
-                            title: 'Pets',
-                            nav: nav,
-                            pet: results
-                        });
-
-                    }
-                );
-
-            });
-
-        });
+//        var url = 'mongodb://pettio-lite:pettio-lite@ds115752.mlab.com:15752/heroku_8kbdmjms';
+//
+//            mongodb.connect(url, function (err, db) {
+//                var collection = db.collection('pets');
+//
+//                collection.findOne({
+//                        _id: id
+//                    },
+//                    function (err, results) {
+//                        res.render('petView', {
+//                            title: 'Pets',
+//                            nav: nav,
+//                            pet: results
+//                        });
+//
+//                    }
+//                );
+//
+//            });
+//
+//        });
     
     petRouter.route('/tag/:tag')
         .get(petController.getPhotosByTag);
