@@ -3,10 +3,18 @@ var ObjectId = require('mongodb').ObjectID;
 var flickrService = require('../services/flickrService.js');
 var config = require('../config/config');
 var moment = require('moment');
+var petService = require('../services/petService.js');
 
 moment.years = function(fromDate, toDate) {
     return moment(fromDate).diff(toDate, 'years');
 };
+
+moment.remainderMonths = function(fromDate, toDate) {
+    return Math.round(moment(fromDate).diff(toDate, 'months'))%12;
+};
+
+
+
 
 
 var petController = function (flickrService, nav) {
@@ -38,13 +46,15 @@ var petController = function (flickrService, nav) {
         mongodb.connect(url, function (err, db) {
             console.log('error ' + err);
             var collection = db.collection('pets');
-            collection.find({}).toArray(
+            collection.find({}).sort({adopted: 1}).toArray(
                 function (err, results) {
                     res.render('petListView', {
                         title: 'My Pets',
                         nav: nav,
                         pets: results,
-                        moment: moment
+                        moment: moment,
+                        petService:
+                        petService
                     });
                 }
             );

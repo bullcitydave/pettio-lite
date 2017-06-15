@@ -137,7 +137,8 @@
                                 <%= ' - ' + moment(pets[i].died).format('MMMM Do, YYYY');%>
                             <% } %>
                         </h5>
-                        <h4><%= moment.years(pets[i].died, pets[i].birthday);%> Years Old</h4>
+                        <h4><%= petService(pets[i]).yearsAlive();%><%if (petService(pets[i]).monthsAlive() != '' && petService(pets[i]).yearsAlive() != '') { %>,
+                        <% } %><%= petService(pets[i]).monthsAlive();%> old</h4>
                     </div>
                 </div>
                 <div class="panel panel-default col-md-6">
@@ -148,7 +149,9 @@
                                 <%= ' - ' + moment(pets[i].died).format('MMMM Do, YYYY');%>
                             <% } %>
                         </h5>
-                        <h4><%= moment.years(pets[i].died, pets[i].adopted);%> Years</h4>
+                        <h4><%=petService(pets[i]).yearsWithMe();%><%if (petService(pets[i]).monthsWithMe() != '' && petService(pets[i]).yearsWithMe() != '') { %>,
+                        <% } %>
+                        <%=petService(pets[i]).monthsWithMe();%></h4>
                     </div>
                 </div>
                      </div>
